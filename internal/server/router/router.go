@@ -11,6 +11,7 @@ import (
 func Router() *gin.Engine {
 	router := gin.Default()
 	router.Use(middleware.CORS())
+	router.POST("/api", api.API)
 	router.POST("/api/version", api.Version)
 	return router
 }
