@@ -50,3 +50,13 @@ func GetFavourite(ctx *gin.Context) {
 	}
 	format.HTTP(ctx, ecode.Success, nil, result)
 }
+
+// Get Favourite List
+func GetFavouriteList(ctx *gin.Context) {
+	result, err := favourite.GetFavouriteList()
+	if err != nil {
+		format.HTTP(ctx, ecode.ErrorGetFavouriteList, err, nil)
+		return
+	}
+	format.HTTP(ctx, ecode.Success, nil, result)
+}

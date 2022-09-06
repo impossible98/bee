@@ -18,6 +18,7 @@ func Router() *gin.Engine {
 	{
 		apiV1.POST("/favourite/create", v1.CreateFavourite)
 		apiV1.POST("/favourite/get", v1.GetFavourite)
+		apiV1.POST("/favourite_list/get", v1.GetFavouriteList)
 	}
 	return router
 }

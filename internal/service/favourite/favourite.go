@@ -30,3 +30,12 @@ func GetFavourite(platform string, roomId string) (*model.Favourite, error) {
 	}
 	return &favourite, nil
 }
+
+// Get Favoutite List
+func GetFavouriteList() ([]*model.Favourite, error) {
+	favourites := *new([]*model.Favourite)
+	if err := model.DB.Find(&favourites).Error; err != nil {
+		return nil, err
+	}
+	return favourites, nil
+}
