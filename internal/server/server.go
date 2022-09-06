@@ -7,5 +7,5 @@ import (
 
 func InitServer() {
 	server := router.Router()
-	server.Run()
+	server.Run(":7226")
 }
