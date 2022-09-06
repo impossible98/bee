@@ -39,3 +39,14 @@ func GetFavouriteList() ([]*model.Favourite, error) {
 	}
 	return favourites, nil
 }
+
+// Delete Favourite
+func DeleteFavourite(platform string, roomId string) (*model.Favourite, error) {
+	favourite := model.Favourite{
+		PlayURL: platform + roomId,
+	}
+	if err := model.DB.Where("play_url = ?", favourite.PlayURL).Delete(&favourite).Error; err != nil {
+		return nil, err
+	}
+	return nil, nil
+}

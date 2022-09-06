@@ -6,4 +6,5 @@ const (
 	ErrorCreateFavourite  = 10010
 	ErrorGetFavourite     = 10011
 	ErrorGetFavouriteList = 10012
+	ErrorDeleteFavourite  = 10014
 )

@@ -4,6 +4,7 @@ import (
 	// import third-party packages
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+
 	// import local packages
 	"bee/internal/service/favourite"
 	"bee/pkg/ecode"
@@ -56,6 +57,21 @@ func GetFavouriteList(ctx *gin.Context) {
 	result, err := favourite.GetFavouriteList()
 	if err != nil {
 		format.HTTP(ctx, ecode.ErrorGetFavouriteList, err, nil)
+		return
+	}
+	format.HTTP(ctx, ecode.Success, nil, result)
+}
+
+// Delete Favourite
+func DeleteFavourite(ctx *gin.Context) {
+	request := Favourite{}
+	if err := ctx.ShouldBindJSON(&request); err != nil {
+		format.HTTP(ctx, ecode.InvalidParams, err, nil)
+		return
+	}
+	result, err := favourite.DeleteFavourite(request.Platform, request.RoomId)
+	if err != nil {
+		format.HTTP(ctx, ecode.ErrorDeleteFavourite, err, nil)
 		return
 	}
 	format.HTTP(ctx, ecode.Success, nil, result)
