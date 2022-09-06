@@ -7,7 +7,7 @@ RUN make install \
 # two
 FROM debian:10-slim
 ARG name=bee
-ENV PORT=8080
+ENV PORT=7226
 WORKDIR /app
 COPY --from=one /src/dist/$name ./
 EXPOSE $PORT
