@@ -17,6 +17,7 @@ func Router() *gin.Engine {
 	apiV1 := router.Group("/api/v1")
 	{
 		apiV1.POST("/favourite/create", v1.CreateFavourite)
+		apiV1.POST("/favourite/get", v1.GetFavourite)
 	}
 	return router
 }

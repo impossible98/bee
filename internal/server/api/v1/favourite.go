@@ -34,3 +34,19 @@ func CreateFavourite(ctx *gin.Context) {
 	}
 	format.HTTP(ctx, ecode.Success, nil, result)
 }
+
+// Get Favourite
+func GetFavourite(ctx *gin.Context) {
+	request := Favourite{}
+	err := ctx.ShouldBindJSON(&request)
+	if err != nil {
+		format.HTTP(ctx, ecode.InvalidParams, err, nil)
+		return
+	}
+	result, err := favourite.GetFavourite(request.Platform, request.RoomId)
+	if err != nil {
+		format.HTTP(ctx, ecode.ErrorGetFavourite, err, nil)
+		return
+	}
+	format.HTTP(ctx, ecode.Success, nil, result)
+}

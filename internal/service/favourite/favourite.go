@@ -19,3 +19,14 @@ func CreateFavourite(identity string, platform string, roomId string, liveStream
 	}
 	return &favourite, nil
 }
+
+// Get Favourite
+func GetFavourite(platform string, roomId string) (*model.Favourite, error) {
+	favourite := model.Favourite{
+		PlayURL: platform + roomId,
+	}
+	if err := model.DB.Where("play_url = ?", favourite.PlayURL).First(&favourite).Error; err != nil {
+		return nil, err
+	}
+	return &favourite, nil
+}
